@@ -120,8 +120,8 @@ app.post('/signup', upload.single('profilePicture'), (req, res) => {
     }
 
     // After user is inserted, update the file with UserID
-    const userId = result.insertId; // Get the generated user ID
-    const newProfilePicPath = path.join(__dirname, 'UserPFP', `${userId}${path.extname(profilePicture)}`);
+    const userID = result.insertId; // Get the generated user ID
+    const newProfilePicPath = path.join(__dirname, 'UserPFP', `${userID}${path.extname(profilePicture)}`);
 
     // Rename the file to match the UserID
     fs.rename(profilePicture, newProfilePicPath, (err) => {
@@ -132,7 +132,7 @@ app.post('/signup', upload.single('profilePicture'), (req, res) => {
 
       // Update the user record with the new profile picture path
       const updateQuery = 'UPDATE users SET profilePicture = ? WHERE UserID = ?';
-      db.query(updateQuery, [newProfilePicPath, UserId], (err) => {
+      db.query(updateQuery, [newProfilePicPath, UserID], (err) => {
         if (err) {
           console.error('Error updating profile picture in DB:', err);
           return res.status(500).json({ message: 'Error saving profile picture. Please try again.' });

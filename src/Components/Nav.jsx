@@ -4,6 +4,7 @@ import { Link } from "react-router-dom"; // Import Link from react-router-dom
 import "./Nav.css";
 
 function Nav() {
+  const [isLoggedIn, setIsLoggedIn] = useState(true); // Track whether the user is logged in
   const [showModal, setShowModal] = useState(false); // State to control modal visibility
 
   const handleLogoutClick = () => {
@@ -17,6 +18,7 @@ function Nav() {
   const handleConfirmLogout = () => {
     // Perform actual logout action here (e.g., clear session or redirect)
     console.log("Logging out...");
+    setIsLoggedIn(false); // Set user as logged out
     setShowModal(false); // Close the modal after confirming logout
   };
 
@@ -62,21 +64,39 @@ function Nav() {
           </div>
         </Link>
 
-        {/* Logout Button */}
-        <button
-          type="button"
-          className="btn btn-primary"
-          onClick={handleLogoutClick}
-          style={{
-            background: 'linear-gradient(151deg, rgba(255,255,255,1) 15%, rgba(101,251,255,0.76) 100%)',
-            color: 'black',
-            fontWeight: 'Bold',
-            fontFamily: '"Concert One", sans-serif',
-            borderStyle: 'solid',
-          }}
-        >
-          LOGOUT
-        </button>
+        {/* Logout or Sign In Button */}
+        {isLoggedIn ? (
+          <button
+            type="button"
+            className="btn btn-primary"
+            onClick={handleLogoutClick}
+            style={{
+              background: 'linear-gradient(151deg, rgba(255,255,255,1) 15%, rgba(101,251,255,0.76) 100%)',
+              color: 'black',
+              fontWeight: 'Bold',
+              fontFamily: '"Concert One", sans-serif',
+              borderStyle: 'solid',
+            }}
+          >
+            LOGOUT
+          </button>
+        ) : (
+          <Link to="/login">
+            <button
+              type="button"
+              className="btn btn-primary"
+              style={{
+                background: 'linear-gradient(151deg, rgba(255,255,255,1) 15%, rgba(101,251,255,0.76) 100%)',
+                color: 'black',
+                fontWeight: 'Bold',
+                fontFamily: '"Concert One", sans-serif',
+                borderStyle: 'solid',
+              }}
+            >
+              SIGN IN
+            </button>
+          </Link>
+        )}
 
         {/* Modal for Logout Confirmation */}
         {showModal && (

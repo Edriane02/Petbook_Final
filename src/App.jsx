@@ -13,6 +13,7 @@ import Notif from './Functions/Notification.jsx';
 import Profile from './Functions/Profile.jsx';
 import SignUp from './Functions/SignUp.jsx'; // Import the SignUp component
 import ChatBox from './Components/ChatBox'; // Import ChatBox component
+import Login from './Functions/Login.jsx'; // Import Login component
 import './App.css';
 
 function App() {
@@ -34,6 +35,7 @@ function App() {
                 <Route path="/create" element={<Create />} />
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/signup" element={<SignUp />} />
+                <Route path="/login" element={<Login />} />
                 {/* Default route */}
                 <Route path="/" element={<Home />} />
               </Routes>
