@@ -16,11 +16,6 @@ function Nav() {
   };
 
   const handleConfirmLogout = () => {
-<<<<<<< HEAD
-    // Perform actual logout action here (e.g., clear session or redirect)
-    console.log("Logging out...");
-    setIsLoggedIn(false); // Set user as logged out
-=======
     // Clear user credentials from localStorage
     localStorage.removeItem("user");
 
@@ -30,7 +25,6 @@ function Nav() {
     // Refresh the page after logging out
     window.location.reload(); // This will reload the current page
 
->>>>>>> 4c47b0b6edca7509fe68ff2d2a63f9c58ace7ca5
     setShowModal(false); // Close the modal after confirming logout
   };
 

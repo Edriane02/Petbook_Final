@@ -105,15 +105,9 @@ app.post('/signup', upload.single('profilePicture'), (req, res) => {
       return res.status(500).json({ message: 'Server error. Please try again.' });
     }
 
-<<<<<<< HEAD
-    // After user is inserted, update the file with UserID
-    const userID = result.insertId; // Get the generated user ID
-    const newProfilePicPath = path.join(__dirname, 'UserPFP', `${userID}${path.extname(profilePicture)}`);
-=======
     if (results.length > 0) {
       return res.status(400).json({ message: 'Email is already registered.' });
     }
->>>>>>> 4c47b0b6edca7509fe68ff2d2a63f9c58ace7ca5
 
     const insertQuery = `
       INSERT INTO users (username, email, password, name, bio)
@@ -124,16 +118,6 @@ app.post('/signup', upload.single('profilePicture'), (req, res) => {
         return res.status(500).json({ message: 'Error registering user. Please try again.' });
       }
 
-<<<<<<< HEAD
-      // Update the user record with the new profile picture path
-      const updateQuery = 'UPDATE users SET profilePicture = ? WHERE UserID = ?';
-      db.query(updateQuery, [newProfilePicPath, UserID], (err) => {
-        if (err) {
-          console.error('Error updating profile picture in DB:', err);
-          return res.status(500).json({ message: 'Error saving profile picture. Please try again.' });
-        }
-        res.status(200).json({ message: 'Sign up successful!' });
-=======
       const userId = results.insertId;
 
       let profilePictureUrl = null;
@@ -159,7 +143,6 @@ app.post('/signup', upload.single('profilePicture'), (req, res) => {
           bio,
           profilePicture: profilePictureUrl,
         },
->>>>>>> 4c47b0b6edca7509fe68ff2d2a63f9c58ace7ca5
       });
     });
   });
